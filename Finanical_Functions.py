@@ -1,6 +1,6 @@
 def HPR(Beginning_Price, End_Value, Dividend):
 #Holding Period Return Variables
-    # Beginning_Price = float(input("What was the purchase price of the security? "))
+    # Beginning_Price = float(input("What was the purchase price of the security? ")
     # End_Value = float(input("what was the sale price of the security? "))
     # Dividend = float(input("How much in dividend payments were recieved? "))
     B = Beginning_Price
@@ -15,8 +15,12 @@ def HPR(Beginning_Price, End_Value, Dividend):
 #Holding Period Return math
     HPR= ((E-B+D)/B)
     HPR= HPR*100
+#Capital Gains Calculation
+    CG=((E-B)/B)
+#Dividend Yield Calculation
+    DY=(D/B)
     #return print("Holding Period Return is ","%6.2f" % HPR,"%")
-    return HPR
+    return HPR, CG, DY
 
 ##########################################
 def APR(Per_Period_Rate, Number_Periods):
