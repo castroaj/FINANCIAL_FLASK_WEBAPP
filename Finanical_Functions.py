@@ -15,7 +15,8 @@ def HPR(Beginning_Price, End_Value, Dividend):
 #Holding Period Return math
     HPR= ((E-B+D)/B)
     HPR= HPR*100
-    return print("Holding Period Return is ","%6.2f" % HPR,"%")
+    #return print("Holding Period Return is ","%6.2f" % HPR,"%")
+    return HPR
 
 ##########################################
 def APR(Per_Period_Rate, Number_Periods):
@@ -26,7 +27,8 @@ def APR(Per_Period_Rate, Number_Periods):
     N1 = Number_Periods
 #APR Math
     APR = (P1*N1)
-    return print("The APR is ","%6.2f" % APR,"%")
+    #return print("The APR is ","%6.2f" % APR,"%")
+    return APR
 
 ##########################################
 

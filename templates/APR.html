@@ -1,0 +1,21 @@
+<html>
+    <link rel="stylesheet" type="text/css" href="/static/css/index.css">
+    <script src="/static/js/index.js" asp-append-version="true"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <body>
+      <form action="/apr" method="POST">
+        <label>Period Rate</label>
+        <input name="per_period_rate" id='per_period_rate' value=""><br/>
+        <label>Number Of Periods</label>
+        <input name="number_of_periods" id='number_of_periods' value=""><br/>
+        <button name="submit" type="submit">Submit</button>
+      </form>
+
+      <h1>
+        {{apr}}
+      </h1>
+
+    </body> 
+</html>

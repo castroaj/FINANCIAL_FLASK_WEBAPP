@@ -1,0 +1,23 @@
+<html>
+    <link rel="stylesheet" type="text/css" href="/static/css/index.css">
+    <script src="/static/js/index.js" asp-append-version="true"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <body>
+      <form action="/hpr" method="POST">
+        <label>Purchase Price</label>
+        <input name="purchasePrice" id='purchasePrice' value=""><br/>
+        <label>Sale Price</label>
+        <input name="salePrice" id='salePrice' value=""><br/>
+        <label>Dividend</label>
+        <input name="dividends" id='dividends' value=""><br/>
+        <button name="submit" type="submit">Submit</button>
+      </form>
+
+      <h1>
+        {{hpr}}
+      </h1>
+
+    </body> 
+</html>
