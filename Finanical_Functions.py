@@ -34,15 +34,11 @@ def APR(Per_Period_Rate, Number_Periods):
 
 def EAR(Per_Period_Rate, Number_Periods):
 #EAR Formula Variables
-    Per_Period_Rate = float(input("What is the rate per period? "))
-    Number_Periods = float(input("How many periods are there? "))
-    P2 = Per_Period_Rate
+    # Per_Period_Rate = float(input("What is the rate per period? "))
+    # Number_Periods = float(input("How many periods are there? "))
+    P2 = Per_Period_Rate / 100
     N2 = Number_Periods
 #EAR Math
     EAR =((((1+P2)**(N2))-1))
-    return print("%6.2f" % EAR,"%")
-
-
-HPR(10, 20, 2)
-                             
-
+    #return print("%6.2f" % EAR,"%")
+    return EAR * 100

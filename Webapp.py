@@ -13,7 +13,10 @@ def index():
 
 @app.route('/hpr', methods=['POST', 'GET'])
 def hpr():
-    hpr = 5
+    purchasePrice = 0
+    salePrice = 0
+    dividends = 0
+    hpr = 0
 
     if request.method == 'POST':
         form = request.form
@@ -23,11 +26,13 @@ def hpr():
 
         hpr = HPR(Beginning_Price=purchasePrice, End_Value=salePrice, Dividend=dividends)
 
-    return render_template('hpr.html', hpr=hpr)
+    return render_template('hpr.html', hpr=hpr, purchasePrice=purchasePrice, salePrice=salePrice, dividends=dividends)
 
 @app.route('/apr', methods=['POST', 'GET'])
 def apr():
-    apr = 5
+    number_of_periods = 0
+    per_period_rate = 0
+    apr = 0
 
     if request.method == 'POST':
         form = request.form
@@ -37,6 +42,27 @@ def apr():
         apr = APR(Number_Periods=number_of_periods, Per_Period_Rate=per_period_rate)
 
     return render_template('apr.html', apr=apr)
+
+@app.route('/ear', methods=['POST', 'GET'])
+def ear():
+    ear = 0
+    number_of_periods = 0
+    per_period_rate = 0
+
+    if request.method == 'POST':
+        form = request.form
+        number_of_periods = int(form['number_of_periods'])
+        per_period_rate = int(form['per_period_rate'])
+
+        print(number_of_periods)
+        print(per_period_rate)
+
+        ear = EAR(Number_Periods=number_of_periods, Per_Period_Rate=per_period_rate)
+
+        print(ear)
+
+
+    return render_template('ear.html', ear=ear, number_of_periods=number_of_periods, per_period_rate=per_period_rate)
 
 # Main function
 if __name__ == "__main__":
