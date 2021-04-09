@@ -9,7 +9,7 @@ app.config['DEBUG'] = True
 # Index of the website
 @app.route('/')
 def index():
-    return "Hello World"
+    return render_template('Index.html')
 
 # Main function
 if __name__ == "__main__":
