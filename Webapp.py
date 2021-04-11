@@ -17,6 +17,8 @@ def hpr():
     salePrice = 0
     dividends = 0
     hpr = 0
+    cg = 0
+    dy = 0
 
     if request.method == 'POST':
         form = request.form
@@ -24,9 +26,9 @@ def hpr():
         salePrice = int(form['salePrice'])
         dividends = int(form['dividends'])
 
-        hpr = HPR(Beginning_Price=purchasePrice, End_Value=salePrice, Dividend=dividends)
+        #hpr, cg, dy = HPR(Beginning_Price=purchasePrice, End_Value=salePrice, Dividend=dividends)
 
-    return render_template('hpr.html', hpr=hpr, purchasePrice=purchasePrice, salePrice=salePrice, dividends=dividends)
+    return render_template('hpr.html', hpr=hpr, capitalGain=cg, dividendYield=dy, purchasePrice=purchasePrice, salePrice=salePrice, dividends=dividends)
 
 @app.route('/apr', methods=['POST', 'GET'])
 def apr():
@@ -39,7 +41,7 @@ def apr():
         number_of_periods = int(form['number_of_periods'])
         per_period_rate = int(form['per_period_rate'])
 
-        apr = APR(Number_Periods=number_of_periods, Per_Period_Rate=per_period_rate)
+        #apr = APR(Number_Periods=number_of_periods, Per_Period_Rate=per_period_rate)
 
     return render_template('apr.html', apr=apr)
 
@@ -57,7 +59,7 @@ def ear():
         print(number_of_periods)
         print(per_period_rate)
 
-        ear = EAR(Number_Periods=number_of_periods, Per_Period_Rate=per_period_rate)
+        #ear = EAR(Number_Periods=number_of_periods, Per_Period_Rate=per_period_rate)
 
         print(ear)
 
