@@ -17,6 +17,13 @@ def HPR(Beginning_Price, End_Value, Dividend):
     CG=((E-B)/B)
 #Dividend Yield Calculation
     DY=(D/B)
+    #Data to pie plot
+    labels='Capital Gains','Dividend Yield'
+    sizes=[CG,DY]
+    colors=['purple','yellow']
+    plt.pie(sizes,labels=labels,colors=colors,autopct='%1.1f%%',shadow=True)
+    plt.axis('equal')
+    #plt.show()
     return HPR, CG, DY
 
 ##########################################
