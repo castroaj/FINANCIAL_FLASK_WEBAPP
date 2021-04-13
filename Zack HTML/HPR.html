@@ -1,0 +1,48 @@
+<html>
+<head>
+<title>HPR Calculator</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+
+<style type="text/css">	
+body {
+	margin-left: auto;
+	margin-right: auto;
+	width: 75%;
+	background-color: #f4efe1;
+	}
+</style>
+</head>
+
+    <body>
+        <div class="sidenav">
+        <a href="/">Home</a>
+        <a href="/hpr">HPR</a>
+        <a href="/apr">APR</a>
+        <a href="/ear">EAR</a>
+        </div>
+
+      <div class="main" style="margin-left: 250px">
+	  
+	  <h1>Calculate HPR</h1>
+		<p>Holding period return is the total return received from holding an asset or portfolio of assets
+		over a period of time, known as the holding period, generally expressed as a percentage.</P>
+		
+      <form action="/hpr" method="POST">
+        <label>Purchase Price?</label>
+        <input name="purchasePrice" id='purchasePrice' value="{{purchasePrice}}"><br/>
+		</br>
+        <label>Sale Price?</label>
+        <input name="salePrice" id='salePrice' value="{{salePrice}}"><br/>
+		</br>
+        <label>What is the dividend amount?</label>
+        <input name="dividends" id='dividends' value="{{dividends}}"><br/>
+		</br>
+        <button name="submit" type="submit">Submit</button>
+      </form>
+
+      <h1>
+        {{hpr}}
+      </h1>
+    </div>
+    </body> 
+</html>
