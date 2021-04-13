@@ -1,0 +1,47 @@
+<html>
+<head>
+<title>APR Calculator</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+	
+<style type="text/css">	
+body {
+	margin-left: auto;
+	margin-right: auto;
+	width: 75%;
+	background-color: #f4efe1;
+	}
+</style>
+</head>
+
+    <body>
+
+        <div class="sidenav">
+            <a href="/">Home</a>
+            <a href="/hpr">HPR</a>
+            <a href="/apr">APR</a>
+            <a href="/ear">EAR</a>
+        </div>
+
+        <div class="main" style="margin-left: 250px;">
+		
+		<h1>Calculate APR</h1>
+		<p>Annual percentage rate (APR) is the interest rate for a whole year, rather than just a monthly fee/rate, 
+		as applied on a loan, mortgage loan, credit card, etc.</P>
+		
+            <form action="/apr" method="POST">
+                <label>What is your interest rate?</label>
+                <input name="per_period_rate" id='per_period_rate' value=""><br/>
+				<br/>
+                <label>How many payments?</label>
+                <input name="number_of_periods" id='number_of_periods' value=""><br/>
+				</br>
+                <button name="submit" type="submit">Submit</button>
+            </form>
+
+            <h1>
+                {{apr}}
+            </h1>
+        </div>
+
+    </body> 
+</html>
