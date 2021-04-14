@@ -6,6 +6,8 @@ app = Flask(__name__)
 app.config['TEMPLATES_AUTO_RELOAD'] = True
 app.config['DEBUG'] = True
 
+
+
 # Index of the website
 @app.route('/', methods=['POST', 'GET'])
 def index():
@@ -26,7 +28,7 @@ def hpr():
         salePrice = int(form['salePrice'])
         dividends = int(form['dividends'])
 
-        #hpr, cg, dy = HPR(Beginning_Price=purchasePrice, End_Value=salePrice, Dividend=dividends)
+        hpr, cg, dy = HPR(Beginning_Price=purchasePrice, End_Value=salePrice, Dividend=dividends)
 
     return render_template('hpr.html', hpr=hpr, capitalGain=cg, dividendYield=dy, purchasePrice=purchasePrice, salePrice=salePrice, dividends=dividends)
 
@@ -41,9 +43,9 @@ def apr():
         number_of_periods = int(form['number_of_periods'])
         per_period_rate = int(form['per_period_rate'])
 
-        #apr = APR(Number_Periods=number_of_periods, Per_Period_Rate=per_period_rate)
+        apr = APR(Per_Period_Rate=per_period_rate, Number_Periods=number_of_periods)
 
-    return render_template('apr.html', apr=apr)
+    return render_template('apr.html', apr=apr, number_of_periods=number_of_periods, per_period_rate=per_period_rate)
 
 @app.route('/ear', methods=['POST', 'GET'])
 def ear():
@@ -59,7 +61,7 @@ def ear():
         print(number_of_periods)
         print(per_period_rate)
 
-        #ear = EAR(Number_Periods=number_of_periods, Per_Period_Rate=per_period_rate)
+        ear = EAR(Number_Periods=number_of_periods, Per_Period_Rate=per_period_rate)
 
         print(ear)
 

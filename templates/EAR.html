@@ -10,18 +10,28 @@
             <a href="/ear">EAR</a>
         </div>
 
-        <div class="main" style="margin-left: 250px;">
+        <div style="margin-left: 275px; background-color: rgb(215, 215, 215); padding: 25px; width: min-content;">
+            <h1>CALCULATE EAR</h1>
+            <h3>DESCRIPTION:</h3>
+            <pre> The Effective Annual Rate (EAR) is the rate of interest actually earned on an investment 
+ or paid on a loan as a result of compounding the interest over a given period of time. It is 
+ usually higher than the nominal rate and is used to compare different financial products that 
+ calculate annual interest with different compounding periods – weekly, monthly, yearly, etc.</P>
+            </pre>
+            <h3>INPUT:</h3>
+            <pre style="margin-top: -25px;">
             <form action="/ear" method="POST">
                 <label>Period Rate</label>
-                <input name="per_period_rate" id='per_period_rate' value=""><br/>
+                <input class="form_input" name="per_period_rate" id='per_period_rate' value="{{per_period_rate}}"><br/>
                 <label>Number Of Periods</label>
-                <input name="number_of_periods" id='number_of_periods' value=""><br/>
+                <input class="form_input" name="number_of_periods" id='number_of_periods' value="{{number_of_periods}}"><br/>
                 <button name="submit" type="submit">Submit</button>
             </form>
-
-            <h1>
-                {{ear}}
-            </h1>
+            </pre>
+            <h3 style="margin-top: -35px;">RESULTS:</h3>
+            <pre>
+                <label>Effective Annual Rate: {% if ear != -1 %} {{ear}} {% else %} INVALID {% endif %}</label> 
+            </pre>
         </div>
 
     </body> 

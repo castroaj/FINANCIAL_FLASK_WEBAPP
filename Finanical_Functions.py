@@ -1,6 +1,10 @@
 import matplotlib.pyplot as plt
 
 def HPR(Beginning_Price, End_Value, Dividend):
+
+    if Beginning_Price == 0 and End_Value == 0 and Dividend == 0:
+        return -1, -1, -1
+
 #Holding Period Return Variables
     B = Beginning_Price
     if B < 0:
@@ -22,10 +26,10 @@ def HPR(Beginning_Price, End_Value, Dividend):
     labels='Capital Gains','Dividend Yield'
     sizes=[CG,DY]
     colors=['purple','yellow']
-    plt.pie(sizes,labels=labels,colors=colors,autopct='%1.1f%%',shadow=True)
-    plt.axis('equal')
-    plt.show()
-    return HPR, CG, DY,
+    # plt.pie(sizes,labels=labels,colors=colors,autopct='%1.1f%%',shadow=True)
+    # plt.axis('equal')
+    # plt.show()
+    return HPR, CG, DY
 
 ##########################################
 

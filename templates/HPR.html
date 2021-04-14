@@ -1,7 +1,6 @@
 <html>
     <link rel="stylesheet" type="text/css" href="/static/css/style.css">
 
-
     <body>
         <div class="sidenav">
         <a href="/">Home</a>
@@ -10,22 +9,31 @@
         <a href="/ear">EAR</a>
         </div>
 
-      <div class="main" style="margin-left: 250px">
-      <form action="/hpr" method="POST">
-        <label>Purchase Price</label>
-        <input name="purchasePrice" id='purchasePrice' value="{{purchasePrice}}"><br/>
-        <label>Sale Price</label>
-        <input name="salePrice" id='salePrice' value="{{salePrice}}"><br/>
-        <label>Dividend</label>
-        <input name="dividends" id='dividends' value="{{dividends}}"><br/>
-        <button name="submit" type="submit">Submit</button>
-      </form>
+        <div style="margin-left: 275px; background-color: rgb(215, 215, 215); padding: 25px; width: min-content;">
+        <h1>CALCULATE HPR</h1>
+        <h3>DESCRIPTION:</h3>
+        <pre> Holding period return is the total return received from holding an asset or portfolio of assets over a period of time, 
+ known as the holding period, generally expressed as a percentage.
+        </pre>
+        <h3 >INPUT:</h3>
+        <pre style="margin-top: -35px;">
+          <form action="/hpr" method="POST">
+            <label>Purchase Price?</label>
+            <input class="form_input" name="purchasePrice" id='purchasePrice' value="{{purchasePrice}}"><br/>
+            <label>Sale Price?</label>
+            <input class="form_input" name="salePrice" id='salePrice' value="{{salePrice}}"><br/>
+            <label>What is the dividend amount?</label>
+            <input class="form_input" name="dividends" id='dividends' value="{{dividends}}"><br/>
+            <button class="form_input" name="submit" type="submit">Submit</button>
+          </form>
+        </pre>
+          <h3 style="margin-top: -35px;">RESULTS:</h3>
+          <pre> 
+            <label>Holding Period Return: {% if hpr != -1 %} {{hpr}} {% else %} INVALID {% endif %}</label> 
+            <label>Capital Gain: {% if capitalGain != -1 %} {{capitalGain}} {% else %} INVALID {% endif %}</label> 
+            <label>Dividend Yeild: {% if dividendYield != -1 %} {{dividendYield}} {% else %} INVALID {% endif %}</label>
+          </pre>
 
-      <h1>
-        HPR: {{hpr}}<br/>
-        CG: {{capitalGain}}<br/>
-        DY: {{dividendYield}}<br/>
-      </h1>
     </div>
     </body> 
 </html>
