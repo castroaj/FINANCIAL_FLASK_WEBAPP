@@ -19,9 +19,9 @@ def HPR(Beginning_Price, End_Value, Dividend):
     HPR= ((E-B+D)/B)
     HPR= HPR*100
 #Capital Gains Calculation
-    CG=((E-B)/B)
+    CG=((E-B)/B)*100
 #Dividend Yield Calculation
-    DY=(D/B)
+    DY=(D/B)*100
 #Data to pie plot
     labels='Capital Gains','Dividend Yield'
     sizes=[CG,DY]
@@ -32,6 +32,18 @@ def HPR(Beginning_Price, End_Value, Dividend):
     return HPR, CG, DY
 
 ##########################################
+
+def Period_Rate(Number_Of_Payments,Payment_Amount,Amount_Barrowed):
+#Per Period Rate Variables
+    N = Number_Of_Payments
+    PMT = Payment_Amount
+    PV = Amount_Barrowed
+    FV = 0
+#math
+    Period_Rate_Percent = np.rate(N,-PMT,PV,FV)
+    return Period_Rate_Percent*100
+
+#########################################
 
 def APR(Per_Period_Rate, Number_Periods):
 #APR Formula Variables
