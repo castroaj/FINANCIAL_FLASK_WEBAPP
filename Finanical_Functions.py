@@ -63,3 +63,18 @@ def EAR(Per_Period_Rate, Number_Periods):
 #EAR Math
     EAR =((((1+P2)**(N2))-1))
     return EAR * 100
+
+##########################################
+
+def Sharpe(ReturnOnPortfolio,RiskFreeRate,RiskOfPortfolio):
+#Sharpe Ratio
+#Variables
+    R = ReturnOnPortfolio
+    R = R/100
+    T = RiskFreeRate
+    T = T/100
+    S = RiskOfPortfolio
+    S = S/100
+#Formula
+    Sharpe_Ratio = ((R-T)/S)
+    return Sharpe_Ratio
