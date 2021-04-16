@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+import numpy as np
 
 def HPR(Beginning_Price, End_Value, Dividend):
 

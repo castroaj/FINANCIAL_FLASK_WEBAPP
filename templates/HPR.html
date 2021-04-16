@@ -1,5 +1,7 @@
 <html>
     <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
 
     <body>
         <div class="sidenav">
@@ -9,7 +11,7 @@
         <a href="/ear">EAR</a>
         </div>
 
-        <div style="margin-left: 275px; background-color: rgb(215, 215, 215); padding: 25px; width: min-content;">
+        <div style="margin-left: 275px; background-color: rgb(215, 215, 215); padding: 25px; width: min-content; height: max-content;">
         <h1>CALCULATE HPR</h1>
         <h3>DESCRIPTION:</h3>
         <pre> Holding period return is the total return received from holding an asset or portfolio of assets over a period of time, 
@@ -27,13 +29,70 @@
             <button class="form_input" name="submit" type="submit">Submit</button>
           </form>
         </pre>
+        {% if isPost == True %}
+          {% if isCalculated == True %}
           <h3 style="margin-top: -35px;">RESULTS:</h3>
           <pre> 
-            <label>Holding Period Return: {% if hpr != -1 %} {{hpr}} {% else %} INVALID {% endif %}</label> 
+            <label>Holding Period Return: {% if hpr != -1.00 %} {{hpr}} {% else %} INVALID {% endif %}</label> 
             <label>Capital Gain: {% if capitalGain != -1 %} {{capitalGain}} {% else %} INVALID {% endif %}</label> 
             <label>Dividend Yeild: {% if dividendYield != -1 %} {{dividendYield}} {% else %} INVALID {% endif %}</label>
           </pre>
 
+          <input id='capitalGain' value="{{capitalGain}}" type="hidden"/>
+          <input id='dividendYield' value="{{dividendYield}}" type="hidden"/>
+
+          
+            <div id="CG_DY_Chart" style="width: 900px; height: 300px; margin: 100px; margin-top: 20px;"></div>
+          {% else %}
+          <h3 style="margin-top: -35px;">RESULTS:</h3>
+            <pre> 
+              <label>INVALID INPUT</label> 
+            </pre>
+          {% endif %}
+        {% endif %}
     </div>
-    </body> 
+
+    
+
+    </body>
+    
+    <script text="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+
+      var cg = parseFloat(document.getElementById('capitalGain').value)
+      var cg_color;
+      if (cg < 0)
+        cg_color = 'red'
+      else
+        cg_color = 'green'
+
+      function drawChart() {
+      var data = google.visualization.arrayToDataTable([
+        ["Element", "Value", { role: "style" } ],
+        ["Capital Gain", cg, cg_color],
+        ["Dividend Yield", parseFloat(document.getElementById('dividendYield').value), "silver"]
+      ]);
+
+      var view = new google.visualization.DataView(data);
+      view.setColumns([0, 1,
+                       { calc: "stringify",
+                         sourceColumn: 1,
+                         type: "string",
+                         role: "annotation" },
+                       2]);
+
+      var options = {
+        title: "Capital Gain VS Dividend Yield",
+        width: 800,
+        height: 400,
+        bar: {groupWidth: "75%"},
+        legend: { position: "none" },
+      };
+
+      var chart = new google.visualization.BarChart(document.getElementById("CG_DY_Chart"));
+      chart.draw(view, options);
+      }
+    </script>
+
 </html>

@@ -6,6 +6,12 @@ app = Flask(__name__)
 app.config['TEMPLATES_AUTO_RELOAD'] = True
 app.config['DEBUG'] = True
 
+def check_float(f):
+    try:
+        float(f)
+        return True
+    except ValueError:
+        return False
 
 
 # Index of the website
@@ -15,22 +21,32 @@ def index():
 
 @app.route('/hpr', methods=['POST', 'GET'])
 def hpr():
-    purchasePrice = 0
-    salePrice = 0
-    dividends = 0
-    hpr = 0
-    cg = 0
-    dy = 0
+    purchasePrice , salePrice, dividends = 0, 0, 0
+    hpr, cg, dy = -1, -1, -1
+    isCalculated = False;
+    isPost = False
 
     if request.method == 'POST':
+        isPost = True
         form = request.form
-        purchasePrice = int(form['purchasePrice'])
-        salePrice = int(form['salePrice'])
-        dividends = int(form['dividends'])
+        purchasePrice = form['purchasePrice']
+        salePrice = form['salePrice']
+        dividends = form['dividends']
 
-        hpr, cg, dy = HPR(Beginning_Price=purchasePrice, End_Value=salePrice, Dividend=dividends)
+        if check_float(purchasePrice) and check_float(salePrice) and check_float(dividends):
+            purchasePrice, salePrice, dividends = float(purchasePrice), float(salePrice), float(dividends)
+            hpr, cg, dy = HPR(Beginning_Price=purchasePrice, End_Value=salePrice, Dividend=dividends)
 
-    return render_template('hpr.html', hpr=hpr, capitalGain=cg, dividendYield=dy, purchasePrice=purchasePrice, salePrice=salePrice, dividends=dividends)
+            if hpr != -1 and cg != -1 and dy != 1:
+                isCalculated = True
+        else:
+            purchasePrice , salePrice, dividends = 0, 0, 0
+        
+    hpr = "{:.2f}".format(hpr)
+    cg = "{:.2f}".format(cg)
+    dy = "{:.2f}".format(dy)
+
+    return render_template('hpr.html', hpr=hpr, capitalGain=cg, dividendYield=dy, purchasePrice=purchasePrice, salePrice=salePrice, dividends=dividends, isCalculated=isCalculated, isPost=isPost)
 
 @app.route('/apr', methods=['POST', 'GET'])
 def apr():
@@ -62,9 +78,6 @@ def ear():
         print(per_period_rate)
 
         ear = EAR(Number_Periods=number_of_periods, Per_Period_Rate=per_period_rate)
-
-        print(ear)
-
 
     return render_template('ear.html', ear=ear, number_of_periods=number_of_periods, per_period_rate=per_period_rate)
 
