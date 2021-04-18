@@ -1,5 +1,8 @@
 import matplotlib.pyplot as plt
 import numpy as np
+import statistics
+from pandas import DataFrame
+from scipy.stats.mstats import gmean
 
 def HPR(Beginning_Price, End_Value, Dividend):
 
@@ -75,3 +78,28 @@ def Sharpe(ReturnOnPortfolio,RiskFreeRate,RiskOfPortfolio):
  #Formula
     Sharpe_Ratio = ((R-T)/S)
     return Sharpe_Ratio
+
+##########################################
+
+#Harmonic Mean
+data = [1,2,8,4,6,9,8]
+
+#Harmonic mean funciton
+print(statistics.harmonic_mean(data))
+
+##########################################
+#Geometric Mean
+data = {'values': [8,16,22,12,41]}
+df = DataFrame(data)
+
+geometricMean = gmean(df.loc[:,'values'])
+print ('The Geometric Mean is: ' + str(geometricMean))
+
+def GeoMean(data):
+    data = {'values': []}
+    df = DataFrame(data)
+
+    geometricMean = gmean(df.loc[:,'values'])
+    return geometriMean
+
+##########################################
