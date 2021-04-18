@@ -81,25 +81,13 @@ def Sharpe(ReturnOnPortfolio,RiskFreeRate,RiskOfPortfolio):
 
 ##########################################
 
-#Harmonic Mean
-data = [1,2,8,4,6,9,8]
-
-#Harmonic mean funciton
-print(statistics.harmonic_mean(data))
+def harmonic_mean(data):
+    return statistics.harmonic_mean(data)
 
 ##########################################
-#Geometric Mean
-data = {'values': [8,16,22,12,41]}
-df = DataFrame(data)
-
-geometricMean = gmean(df.loc[:,'values'])
-print ('The Geometric Mean is: ' + str(geometricMean))
 
 def GeoMean(data):
-    data = {'values': []}
-    df = DataFrame(data)
-
-    geometricMean = gmean(df.loc[:,'values'])
-    return geometriMean
+    df = DataFrame({'values' : data})
+    return gmean(df.loc[:,'values'])
 
 ##########################################

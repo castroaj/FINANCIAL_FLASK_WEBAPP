@@ -33,9 +33,9 @@
           {% if isCalculated == True %}
           <h3 style="margin-top: -35px;">RESULTS:</h3>
           <pre> 
-            <label>Holding Period Return: {% if hpr != -1.00 %} {{hpr}} {% else %} INVALID {% endif %}</label> 
-            <label>Capital Gain: {% if capitalGain != -1 %} {{capitalGain}} {% else %} INVALID {% endif %}</label> 
-            <label>Dividend Yeild: {% if dividendYield != -1 %} {{dividendYield}} {% else %} INVALID {% endif %}</label>
+            <label>Holding Period Return: {% if hpr != -1.00 %} {{hpr}}% {% else %} INVALID {% endif %}</label> 
+            <label>Capital Gain: {% if capitalGain != -1 %} {{capitalGain}}% {% else %} INVALID {% endif %}</label> 
+            <label>Dividend Yeild: {% if dividendYield != -1 %} {{dividendYield}}% {% else %} INVALID {% endif %}</label>
           </pre>
 
           <input id='capitalGain' value="{{capitalGain}}" type="hidden"/>
