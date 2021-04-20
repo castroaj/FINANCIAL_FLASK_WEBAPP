@@ -1,0 +1,54 @@
+<html>
+<head>
+<title>Per Period Return Calculator</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+	
+<style type="text/css">	
+body {
+	margin-left: auto;
+	margin-right: auto;
+	width: 75%;
+	background-color: #f4efe1;
+	}
+</style>
+</head>
+
+    <body>
+
+        <div class="sidenav">
+            <a href="/">Home</a>
+            <a href="/hpr">HPR</a>
+            <a href="/apr">APR</a>
+            <a href="/ear">EAR</a>
+			<a href="/harmonic">Harmonic Mean</a>
+			<a href="/geometric">Geometric Mean</a>
+			<a href="/sharpe">Sharpe Ratio</a>
+			<a href="/ppr">Per Period Return</a>
+        </div>
+
+        <div class="main" style="margin-left: 250px;">
+		
+		<h1>Per Period Return</h1>
+		<p>Per period return is the total return received from holding an asset or portfolio 
+		of assets over a specified period of time.</P>
+		
+            <form action="/ppr" method="POST">
+                <label>How many payments?</label>
+                <input name="number_of_payments" id='number_of_payments' value=""><br/>
+				<br/>
+                <label>What is the payment amount?</label>
+                <input name="payment_amount" id='payment_amount' value=""><br/>
+				</br>
+				<label>What is the amount borrowed?</label>
+                <input name="amount_borrowed" id='amount_borrowed' value=""><br/>
+				</br>
+                <button name="submit" type="submit">Submit</button>
+            </form>
+
+            <h1>
+                {{Period_Rate}}
+            </h1>
+        </div>
+
+    </body> 
+</html>
