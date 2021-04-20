@@ -1,0 +1,51 @@
+<html>
+<head>
+<title>Geometric Mean</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+	
+<style type="text/css">	
+body {
+	margin-left: auto;
+	margin-right: auto;
+	width: 75%;
+	background-color: #f4efe1;
+	}
+	
+	
+</style>
+</head>
+
+    <body>
+
+        <div class="sidenav">
+            <a href="/">Home</a>
+            <a href="/hpr">HPR</a>
+            <a href="/apr">APR</a>
+            <a href="/ear">EAR</a>
+			<a href="/harmonic">Harmonic Mean</a>
+			<a href="/geometric">Geometric Mean</a>
+        </div>
+
+        <div class="main" style="margin-left: 250px;">
+		
+		<h1>Calculate Geometric Mean</h1>
+		<p>The geometric mean is the average of a set of products, the calculation of which is 
+		commonly used to determine the performance results of an investment or portfolio.</P>
+		</br>
+		</br>
+		
+            <form action="/geometric" method="POST">
+                <label>What are your inputs? Please separate numbers with commas</label>
+				</br>
+                <input name="geometric_mean_input" id='geometric_mean_input' value=""><br/>
+				<br/>
+                <button name="submit" type="submit">Submit</button>
+            </form>
+
+            <h1>
+                {{geometric_mean}}
+            </h1>
+        </div>
+
+    </body> 
+</html>

@@ -1,0 +1,51 @@
+<html>
+<head>
+<title>EAR Calculator</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+
+<style type="text/css">	
+body {
+	margin-left: auto;
+	margin-right: auto;
+	width: 75%;
+	background-color: #f4efe1;
+	}
+</style>
+</head>
+
+    <body>
+
+        <div class="sidenav">
+            <a href="/">Home</a>
+            <a href="/hpr">HPR</a>
+            <a href="/apr">APR</a>
+            <a href="/ear">EAR</a>
+			<a href="/harmonic">Harmonic Mean</a>
+			<a href="/geometric">Geometric Mean</a>
+        </div>
+
+        <div class="main" style="margin-left: 250px;">
+		
+		<h1>Calculate EAR</h1>
+		<p>The Effective Annual Rate (EAR) is the rate of interest actually earned on an investment 
+		or paid on a loan as a result of compounding the interest over a given period of time. It is 
+		usually higher than the nominal rate and is used to compare different financial products that 
+		calculate annual interest with different compounding periods – weekly, monthly, yearly, etc.</P>
+		
+            <form action="/ear" method="POST">
+                <label>What is your interest rate?</label>
+                <input name="per_period_rate" id='per_period_rate' value=""><br/>
+				</br>
+                <label>How many payments?</label>
+                <input name="number_of_periods" id='number_of_periods' value=""><br/>
+				</br>
+                <button name="submit" type="submit">Submit</button>
+            </form>
+
+            <h1>
+                {{ear}}
+            </h1>
+        </div>
+
+    </body> 
+</html>
