@@ -1,0 +1,45 @@
+<html>
+    <title>Harmonic Mean Calculator</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+    <body>
+
+        <div class="sidenav">
+            <a href="/" style="margin-left: 0px; font-size: xx-large; margin-bottom: 15px; color: white;">Home</a>
+            <a href="/hpr">HPR</a>
+            <a href="/apr">APR</a>
+            <a href="/ear">EAR</a>
+            <a href="/PerPeriod">Per Period Rate</a>
+            <a href="/sharpe">Sharpe Ratio</a>
+            <a href="/geometricMean">Geometric Mean</a>
+            <a href="/harmonicMean">Harmonic Mean</a>
+        </div>
+
+        <div class="main">
+            <h1>CALCULATE HARMONIC MEAN</h1>
+            <h3>DESCRIPTION:</h3>
+            <pre> The harmonic mean is a type of numerical average. It is calculated by dividing the number of 
+ observations by the reciprocal of each number in the series. Thus, the harmonic mean is the 
+ reciprocal of the arithmetic mean of the reciprocals.
+            </pre>
+            </pre>
+            <h3>INPUT:</h3>
+            <pre style="margin-top: -25px;">
+
+<form action="/harmonicMean" method="POST">
+    <label>Please list out all of the data points as numbers seperated by commas</label>
+    <label>EX: num1, num2, num3, num4</label>
+    </br>
+    <input name="harmonic_data" id=harmonic_data style="width: 300px;" value="{{harmonic_data}}" /></br>
+    <button name="submit" type="submit">Submit</button>
+</form>
+            </pre>
+            {% if isPost == True%}
+            <h3 style="margin-top: -35px;">RESULTS:</h3>
+            <pre>
+    <label style="font-size: larger;">Harmonic Mean Result: <b>{% if harmonic_mean_result != -1.00 %} {{harmonic_mean_result}}% {% else %} INVALID INPUT {% endif %}</b></label> 
+            </pre>
+            {% endif %}
+        </div>
+
+    </body> 
+</html>

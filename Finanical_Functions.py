@@ -81,7 +81,7 @@ def Sharpe(ReturnOnPortfolio,RiskFreeRate,RiskOfPortfolio):
 
 ##########################################
 
-def harmonic_mean(data):
+def HarmonicMean(data):
     return statistics.harmonic_mean(data)
 
 ##########################################

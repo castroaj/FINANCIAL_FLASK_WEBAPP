@@ -1,0 +1,49 @@
+<html>
+<head>
+<title>Sharpe Ratio Calculator</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+	
+</head>
+
+    <body>
+
+        <div class="sidenav">
+            <a href="/" style="margin-left: 0px; font-size: xx-large; margin-bottom: 15px; color: white;">Home</a>
+            <a href="/hpr">HPR</a>
+            <a href="/apr">APR</a>
+            <a href="/ear">EAR</a>
+            <a href="/PerPeriod">Per Period Rate</a>
+            <a href="/sharpe">Sharpe Ratio</a>
+            <a href="/geometricMean">Geometric Mean</a>
+            <a href="/harmonicMean">Harmonic Mean</a>
+        </div>
+
+        <div class="main">
+		
+            <h1>CALCULATE SHARPE RATIO</h1>
+            <h3>DESCRIPTION:</h3>
+            <pre> The Sharpe ratio is used to help investors understand the return of an investment 
+ compared to its risk.
+            </pre>
+            <h3>INPUT:</h3>
+            <pre style="margin-top: -25px;">
+<form action="/sharpe" method="POST">
+    <label>What is your return on portfolio?</label>
+    <input name="return_on_portfolio" id='return_on_portfolio' value="{{return_on_portfolio}}"><br/>
+    <label>What is the risk free rate?</label>
+    <input name="risk_free_rate" id='risk_free_rate' value="{{risk_free_rate}}"><br/>
+    <label>What is the risk of protfolio?</label>
+    <input name="risk_of_portfolio" id='risk_of_portfolio' value="{{risk_of_portfolio}}"><br/>
+    <button name="submit" type="submit">Submit</button>
+</form>
+            </pre>
+            {% if isPost == True %}
+            <h3 style="margin-top: -35px;">RESULTS:</h3>
+            <pre>
+    <label style="font-size: larger;">Sharpe Ratio: <b>{% if sharpe != -1 %} {{sharpe}} {% else %} INVALID {% endif %}</b></label> 
+            </pre>
+            {% endif %}
+        </div>
+
+    </body> 
+</html>

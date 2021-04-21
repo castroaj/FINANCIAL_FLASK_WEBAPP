@@ -1,36 +1,50 @@
 <html>
+    <title>APR Calculator</title>
     <link rel="stylesheet" type="text/css" href="/static/css/style.css">
-
     <body>
 
         <div class="sidenav">
-            <a href="/">Home</a>
+            <a href="/" style="margin-left: 0px; font-size: xx-large; margin-bottom: 15px; color: white;">Home</a>
             <a href="/hpr">HPR</a>
             <a href="/apr">APR</a>
             <a href="/ear">EAR</a>
+            <a href="/PerPeriod">Per Period Rate</a>
+            <a href="/sharpe">Sharpe Ratio</a>
+            <a href="/geometricMean">Geometric Mean</a>
+            <a href="/harmonicMean">Harmonic Mean</a>
         </div>
 
-        <div style="margin-left: 275px; background-color: rgb(215, 215, 215); padding: 25px; width: min-content;">
+        <div class="main">
             <h1>CALCULATE APR</h1>
-            <h3>DECSCRIPTION</h3>
-            <pre> Annual percentage rate (APR) is the interest rate for a whole year, rather than just a monthly fee/rate, 
- as applied on a loan, mortgage loan, credit card, etc.
+            <h3>DESCRIPTION:</h3>
+            <pre> Annual percentage rate (APR) is the interest rate for a whole year, rather
+ than just a monthly fee/rate, as applied on a loan, mortgage loan, credit
+ card, etc.
             </pre>
             <h3>INPUT:</h3>
             <pre style="margin-top: -25px;">
-                <form action="/apr" method="POST">
-                    <label>What is your interest rate?</label>
-                    <input name="per_period_rate" id='per_period_rate' value="{{per_period_rate}}"><br/>
-                    <label>How many payments?</label>
-                    <input name="number_of_periods" id='number_of_periods' value="{{number_of_periods}}"><br/>
-                    <button name="submit" type="submit">Submit</button>
-                </form>
-            </pre>
 
+<form action="/apr" method="POST">
+    <label>What is your interest rate?</label>
+    <input name="per_period_rate" id='per_period_rate' value="{{per_period_rate}}"><br/>
+    <label>How many payments?</label>
+    <input name="number_of_periods" id='number_of_periods' value="{{number_of_periods}}"><br/>
+    <button name="submit" type="submit">Submit</button>
+</form>
+            </pre>
+            {% if isPost == True %}
+            {% if isCalculated == True%}
             <h3 style="margin-top: -25px;">RESULTS:</h3>
             <pre>
-                <label>Annual Percentage Rate: {% if apr != -1 %} {{apr}} {% else %} INVALID {% endif %}</label> 
+    <label style="font-size: larger;">Annual Percentage Rate: <b>{% if apr != -1 %} {{apr}}% {% else %} INVALID {% endif %}</b></label> 
             </pre>
+            {% else %}
+            <h3 style="margin-top: -35px;">RESULTS:</h3>
+            <pre>
+    <label style="font-size: larger;">Annual Percentage Rate: <b>INVALID INPUT</b></label> 
+            </pre> 
+            {% endif %}
+            {% endif %}
         </div>
 
     </body> 

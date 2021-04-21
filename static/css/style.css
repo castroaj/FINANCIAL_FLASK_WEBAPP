@@ -5,35 +5,65 @@
     z-index: 1; /* Stay on top */
     top: 0; /* Stay at the top */
     left: 0;
-    background-color: #111; /* Black */
+    background-color: #4484ce;
     overflow-x: hidden; /* Disable horizontal scroll */
     padding-top: 20px;
+    border-style: solid;
+    border-color: black;
+    border-left: #4484ce;
+    border-bottom: #4484ce;
+    border-top: #4484ce;
+    
+    border-radius: 1px;
   }
 
   .sidenav a {
     padding: 6px 8px 6px 16px;
     text-decoration: none;
-    font-size: 25px;
-    color: #818181;
+    font-size: 20px;
+    color: rgb(200,200,200);
     display: block;
+    font-weight: 400;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin-left: 45px;
+  }
+
+  .main {
+    margin-left: 275px;
+    background-color: #d9d9d9;
+    padding: 25px;
+    width: min-content;
+    border-style: solid;
+    border-color: black;
+    border-radius: 10px;
   }
   
   /* When you mouse over the navigation links, change their color */
   .sidenav a:hover {
-    color: #f1f1f1;
+    color:  rgb(220, 220, 220);
   }
 
   label {
     display: inline-block;
-    float: left;
     clear: left;
     width: auto;
     text-align: right;
   }
 
+  pre {
+    font-family: 'Courier New', Courier, monospace;
+  }
+
   input {
     display: inline-block;
-    float: left;
+  }
+
+  h1 {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  }
+
+  h3 {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   }
 
   .form_input {
@@ -43,3 +73,40 @@
   .sidebar_item {
     margin-left: 450px;
   }
+
+  body {
+    background-color: white;
+    }
+
+  button {
+    display: inline-block;
+    padding: 10px 15px;
+    font-size: 12px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    background-color: #4484ce;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 3px #999;
+  }
+  
+button:hover {background-color: #4484ce}
+
+button:active {
+  background-color: #4484ce;
+  box-shadow: 0 3px #666;
+  transform: translateY(3px);
+}
+
+img {
+  height: auto;
+  width: 60%;
+  margin-left: 130px;
+  border-style: solid;
+  border: black;
+  border-radius: 15px;
+  padding: 10px;
+}

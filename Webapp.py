@@ -1,5 +1,7 @@
 from flask import Flask, render_template, redirect, request
-from Finanical_Functions import EAR, HPR, APR, harmonic_mean, Period_Rate, Sharpe, GeoMean
+from flask.helpers import flash
+from numpy import ERR_CALL
+from Finanical_Functions import EAR, HPR, APR, HarmonicMean, Period_Rate, Sharpe, GeoMean
 
 # Configure the Flask Object
 app = Flask(__name__)
@@ -50,40 +52,52 @@ def hpr():
 
 @app.route('/apr', methods=['POST', 'GET'])
 def apr():
-    number_of_periods = 0
-    per_period_rate = 0
-    apr = 0
+    number_of_periods, per_period_rate = 0, 0
+    apr = -1
+    isPost = False
+    isCalculated = False
 
     if request.method == 'POST':
+        isPost = True
         form = request.form
-        number_of_periods = int(form['number_of_periods'])
-        per_period_rate = int(form['per_period_rate'])
+        number_of_periods = form['number_of_periods']
+        per_period_rate = form['per_period_rate']
 
-        apr = APR(Per_Period_Rate=per_period_rate, Number_Periods=number_of_periods)
+        if check_float(number_of_periods) and check_float(per_period_rate):
+            number_of_periods, per_period_rate = float(number_of_periods), float(per_period_rate)
+            apr = APR(Per_Period_Rate=per_period_rate, Number_Periods=number_of_periods)
+            isCalculated = True
 
-    return render_template('apr.html', apr=apr, number_of_periods=number_of_periods, per_period_rate=per_period_rate)
+    apr = "{:.2f}".format(apr)
+
+    return render_template('apr.html', apr=apr, number_of_periods=number_of_periods, per_period_rate=per_period_rate, isPost=isPost, isCalculated=isCalculated)
 
 @app.route('/ear', methods=['POST', 'GET'])
 def ear():
-    ear = 0
-    number_of_periods = 0
-    per_period_rate = 0
+    number_of_periods, per_period_rate = 0, 0
+    ear = -1
+    isPost = False
+    isCalculated = False
 
     if request.method == 'POST':
+        isPost = True
         form = request.form
-        number_of_periods = int(form['number_of_periods'])
-        per_period_rate = int(form['per_period_rate'])
+        number_of_periods = form['number_of_periods']
+        per_period_rate = form['per_period_rate']
 
-        print(number_of_periods)
-        print(per_period_rate)
+        if check_float(number_of_periods) and check_float(per_period_rate):
+            number_of_periods, per_period_rate = float(number_of_periods), float(per_period_rate)
+            ear = EAR(Number_Periods=number_of_periods, Per_Period_Rate=per_period_rate)
+            isCalculated = True
 
-        ear = EAR(Number_Periods=number_of_periods, Per_Period_Rate=per_period_rate)
+    ear = "{:.2f}".format(ear)
 
-    return render_template('ear.html', ear=ear, number_of_periods=number_of_periods, per_period_rate=per_period_rate)
+    return render_template('ear.html', ear=ear, number_of_periods=number_of_periods, per_period_rate=per_period_rate, isPost=isPost, isCalculated=isCalculated)
 
 @app.route('/PerPeriod', methods=['POST', 'GET'])
 def perPeriod():
     number_of_payments, payment_amount, amount_borrowed = 0, 0, 0
+    perPeriodRate = -1
 
     if request.method == 'POST':
         form = request.form
@@ -97,13 +111,16 @@ def perPeriod():
 
     perPeriodRate = "{:.2f}".format(perPeriodRate)
 
-    return render_template('perPeriod.html', number_of_payments=number_of_payments, payment_amount=payment_amount, amount_borrowed=amount_borrowed, perPeriodRate=perPeriodRate)
+    return render_template('PPR.html', number_of_payments=number_of_payments, payment_amount=payment_amount, amount_borrowed=amount_borrowed, perPeriodRate=perPeriodRate)
 
 @app.route('/sharpe', methods=['POST', 'GET'])
 def sharpe():
     return_on_portfolio, risk_free_rate, risk_of_portfolio = 0, 0, 0
+    sharpe = -1
+    isPost = False
 
     if request.method == 'POST':
+        isPost = True
         form = request.form
         return_on_portfolio = form['return_on_portfolio']
         risk_free_rate = form['risk_free_rate']
@@ -115,32 +132,60 @@ def sharpe():
 
     sharpe = "{:.2f}".format(sharpe)
 
-    return render_template('sharpe.html', return_on_portfolio=return_on_portfolio, risk_free_rate=risk_free_rate, risk_of_portfolio=risk_of_portfolio, sharpe=sharpe)
+    return render_template('sharpe.html', return_on_portfolio=return_on_portfolio, risk_free_rate=risk_free_rate, risk_of_portfolio=risk_of_portfolio, sharpe=sharpe, isPost=isPost)
 
 @app.route('/harmonicMean', methods=['POST', 'GET'])
 def harmonic_mean():
-    harmonic_data = 0
+    harmonic_data, harmonic_mean_result = 0, 0
+    dataString = ""
+    isPost = False
 
     if request.method == 'POST':
+        isPost = True
         dataString = request.form['harmonic_data']
-        splitData = dataString.split(',').strip()
-        harmonic_data = [int(x) for x in splitData]
-        harmonic_mean_result = harmonic_mean(harmonic_data)
+        splitData = dataString.split(',')
+        
+        if len(splitData) > 0:
+            harmonic_data = [x.strip() for x in splitData]
 
-    return render_template('sharpe.html', harmonic_data=harmonic_data, harmonic_mean_result=harmonic_mean_result)
+            for i, ele in enumerate(harmonic_data):
+                if check_float(ele):
+                    harmonic_data[i] = float(ele)
+                else:
+                    return render_template('harmonicMean.html', harmonic_data=dataString, harmonic_mean_result=-1, isPost=isPost)
+        
+            harmonic_mean_result = HarmonicMean(harmonic_data)
+
+    harmonic_mean_result = "{:.2f}".format(harmonic_mean_result)
+
+    return render_template('harmonicMean.html', harmonic_data=dataString, harmonic_mean_result=harmonic_mean_result, isPost=isPost)
 
 
 @app.route('/geometricMean', methods=['POST', 'GET'])
 def geometricMean():
-    geo_data = 0
-
+    geo_data, geo_mean_result = 0, 0
+    dataString = ""
+    isPost = False
+    
     if request.method == 'POST':
+        isPost = True
         dataString = request.form['geo_data']
-        splitData = dataString.split(',').strip()
-        geo_data = [int(x) for x in splitData]
-        geo_mean_result = GeoMean(geo_data)
+        splitData = dataString.split(',')
 
-    return render_template('sharpe.html', geo_data=geo_data, geo_mean_result=geo_mean_result)
+        if len(splitData) > 0:
+            geo_data = [x.strip() for x in splitData]
+
+            for i, ele in enumerate(geo_data):
+                if check_float(ele):
+                    geo_data[i] = float(ele)
+                else:
+                    return render_template('geometricMean.html', geo_data=dataString, geo_mean_result=-1, isPost=isPost)
+
+            geo_mean_result = GeoMean(geo_data)
+    
+    geo_mean_result = "{:.2f}".format(geo_mean_result)
+
+    return render_template('geometricMean.html', geo_data=dataString, geo_mean_result=geo_mean_result, isPost=isPost)
 
 
 # Main function

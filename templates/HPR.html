@@ -1,59 +1,62 @@
 <html>
+    <title>HPR Calculator</title>
     <link rel="stylesheet" type="text/css" href="/static/css/style.css">
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
 
     <body>
         <div class="sidenav">
-        <a href="/">Home</a>
-        <a href="/hpr">HPR</a>
-        <a href="/apr">APR</a>
-        <a href="/ear">EAR</a>
+          <a href="/" style="margin-left: 0px; font-size: xx-large; margin-bottom: 15px; color: white;">Home</a>
+          <a href="/hpr">HPR</a>
+          <a href="/apr">APR</a>
+          <a href="/ear">EAR</a>
+          <a href="/PerPeriod">Per Period Rate</a>
+          <a href="/sharpe">Sharpe Ratio</a>
+          <a href="/geometricMean">Geometric Mean</a>
+          <a href="/harmonicMean">Harmonic Mean</a>
         </div>
 
-        <div style="margin-left: 275px; background-color: rgb(215, 215, 215); padding: 25px; width: min-content; height: max-content;">
+        <div class="main">
         <h1>CALCULATE HPR</h1>
         <h3>DESCRIPTION:</h3>
-        <pre> Holding period return is the total return received from holding an asset or portfolio of assets over a period of time, 
- known as the holding period, generally expressed as a percentage.
+        <pre> Holding period return is the total return received from holding an asset or portfolio
+ of assets over a period of time, known as the holding period, generally expressed
+ as a percentage.
         </pre>
         <h3 >INPUT:</h3>
         <pre style="margin-top: -35px;">
-          <form action="/hpr" method="POST">
-            <label>Purchase Price?</label>
-            <input class="form_input" name="purchasePrice" id='purchasePrice' value="{{purchasePrice}}"><br/>
-            <label>Sale Price?</label>
-            <input class="form_input" name="salePrice" id='salePrice' value="{{salePrice}}"><br/>
-            <label>What is the dividend amount?</label>
-            <input class="form_input" name="dividends" id='dividends' value="{{dividends}}"><br/>
-            <button class="form_input" name="submit" type="submit">Submit</button>
-          </form>
+
+<form action="/hpr" method="POST">
+       <label>Purchase Price?</label>
+  <input class="form_input" name="purchasePrice" id='purchasePrice' value="{{purchasePrice}}"><br/>
+       <label>Sale Price?</label>
+  <input class="form_input" name="salePrice" id='salePrice' value="{{salePrice}}"><br/>
+       <label>What is the dividend amount?</label>
+  <input class="form_input" name="dividends" id='dividends' value="{{dividends}}"><br/>
+  <button class="form_input" name="submit" type="submit">Submit</button>
+</form>
+
         </pre>
         {% if isPost == True %}
           {% if isCalculated == True %}
           <h3 style="margin-top: -35px;">RESULTS:</h3>
           <pre> 
-            <label>Holding Period Return: {% if hpr != -1.00 %} {{hpr}}% {% else %} INVALID {% endif %}</label> 
-            <label>Capital Gain: {% if capitalGain != -1 %} {{capitalGain}}% {% else %} INVALID {% endif %}</label> 
-            <label>Dividend Yeild: {% if dividendYield != -1 %} {{dividendYield}}% {% else %} INVALID {% endif %}</label>
+<label style="font-size: larger;">Holding Period Return: <b>{% if hpr != -1.00 %} {{hpr}}% {% else %} INVALID INPUT{% endif %}</b></label> 
+<label style="font-size: larger;">Capital Gain: <b>{% if capitalGain != -1 %} {{capitalGain}}% {% else %} INVALID INPUT {% endif %}</b></label> 
+<label style="font-size: larger;">Dividend Yeild: <b>{% if dividendYield != -1 %} {{dividendYield}}% {% else %} INVALID INPUT {% endif %}</b></label>
           </pre>
 
           <input id='capitalGain' value="{{capitalGain}}" type="hidden"/>
           <input id='dividendYield' value="{{dividendYield}}" type="hidden"/>
-
-          
-            <div id="CG_DY_Chart" style="width: 900px; height: 300px; margin: 100px; margin-top: 20px;"></div>
+            <div id="CG_DY_Chart" style="width: 900px; height: 300px; margin: 100px; margin-top: 20px; margin-right: 15px;"></div>
           {% else %}
           <h3 style="margin-top: -35px;">RESULTS:</h3>
             <pre> 
-              <label>INVALID INPUT</label> 
+  <label style="font-size: larger;">INVALID INPUT</label> 
             </pre>
           {% endif %}
         {% endif %}
     </div>
-
-    
-
     </body>
     
     <script text="text/javascript">

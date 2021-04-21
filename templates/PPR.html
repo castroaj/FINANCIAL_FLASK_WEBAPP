@@ -1,0 +1,48 @@
+<html>
+<head>
+<title>Per Period Return Calculator</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+	
+</head>
+
+    <body>
+
+        <div class="sidenav">
+            <a href="/" style="margin-left: 0px; font-size: xx-large; margin-bottom: 15px; color: white;">Home</a>
+            <a href="/hpr">HPR</a>
+            <a href="/apr">APR</a>
+            <a href="/ear">EAR</a>
+            <a href="/PerPeriod">Per Period Rate</a>
+            <a href="/sharpe">Sharpe Ratio</a>
+            <a href="/geometricMean">Geometric Mean</a>
+            <a href="/harmonicMean">Harmonic Mean</a>
+        </div>
+
+        <div class="main">
+            <h1>CALCULATE PER PERIOD RETURN</h1>
+            <h3>DESCRIPTION:</h3>
+            <pre> Per period return is the total return received from holding an asset or portfolio 
+ of assets over a specified period of time.
+            </pre>
+            <h3>INPUT:</h3>
+            <pre style="margin-top: -25px;">
+<form action="/PerPeriod" method="POST">
+    <label>How many payments?</label>
+    <input name="number_of_payments" id='number_of_payments' value="{{number_of_payments}}"><br/>
+    <label>What is the payment amount?</label>
+    <input name="payment_amount" id='payment_amount' value="{{payment_amount}}"><br/>
+    <label>What is the amount borrowed?</label>
+    <input name="amount_borrowed" id='amount_borrowed' value="{{amount_borrowed}}"><br/>
+    <button name="submit" type="submit">Submit</button>
+</form>
+            </pre>
+            {% if isPost == True %}
+            <h3 style="margin-top: -35px;">RESULTS:</h3>
+            <pre>
+    <label style="font-size: larger;">Per Period Return: <b>{% if perPeriodRate != -1 %} {{perPeriodRate}} {% else %} INVALID {% endif %}</b></label> 
+            </pre>
+            {% endif %}
+        </div>
+
+    </body> 
+</html>

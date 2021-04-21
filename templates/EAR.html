@@ -1,37 +1,51 @@
 <html>
+    <title>EAR Calculator</title>
     <link rel="stylesheet" type="text/css" href="/static/css/style.css">
-
     <body>
 
         <div class="sidenav">
-            <a href="/">Home</a>
+            <a href="/" style="margin-left: 0px; font-size: xx-large; margin-bottom: 15px; color: white;">Home</a>
             <a href="/hpr">HPR</a>
             <a href="/apr">APR</a>
             <a href="/ear">EAR</a>
+            <a href="/PerPeriod">Per Period Rate</a>
+            <a href="/sharpe">Sharpe Ratio</a>
+            <a href="/geometricMean">Geometric Mean</a>
+            <a href="/harmonicMean">Harmonic Mean</a>
         </div>
 
-        <div style="margin-left: 275px; background-color: rgb(215, 215, 215); padding: 25px; width: min-content;">
+        <div class="main">
             <h1>CALCULATE EAR</h1>
             <h3>DESCRIPTION:</h3>
             <pre> The Effective Annual Rate (EAR) is the rate of interest actually earned on an investment 
  or paid on a loan as a result of compounding the interest over a given period of time. It is 
  usually higher than the nominal rate and is used to compare different financial products that 
- calculate annual interest with different compounding periods – weekly, monthly, yearly, etc.</P>
+ calculate annual interest with different compounding periods – weekly, monthly, yearly, etc.
             </pre>
             <h3>INPUT:</h3>
             <pre style="margin-top: -25px;">
-            <form action="/ear" method="POST">
-                <label>Period Rate</label>
-                <input class="form_input" name="per_period_rate" id='per_period_rate' value="{{per_period_rate}}"><br/>
-                <label>Number Of Periods</label>
-                <input class="form_input" name="number_of_periods" id='number_of_periods' value="{{number_of_periods}}"><br/>
-                <button name="submit" type="submit">Submit</button>
-            </form>
+                
+<form action="/ear" method="POST">
+     <label>Period Rate?</label>
+<input class="form_input" name="per_period_rate" id='per_period_rate' value="{{per_period_rate}}"><br/>
+     <label>Number Of Periods?</label>
+<input class="form_input" name="number_of_periods" id='number_of_periods' value="{{number_of_periods}}"/><br/>
+    <button name="submit" type="submit">Submit</button>
+</form>
             </pre>
+            {% if isPost == True %}
+            {% if isCalculated == True %}
             <h3 style="margin-top: -35px;">RESULTS:</h3>
             <pre>
-                <label>Effective Annual Rate: {% if ear != -1 %} {{ear}} {% else %} INVALID {% endif %}</label> 
+    <label style="font-size: larger;">Effective Annual Rate: <b>{% if ear != -1.00 %} {{ear}} {% else %} INVALID INPUT {% endif %}</b></label> 
             </pre>
+            {% else %}
+            <h3 style="margin-top: -35px;">RESULTS:</h3>
+            <pre>
+    <label style="font-size: larger;">Effective Annual Rate: <b>INVALID INPUT</b></label> 
+            </pre>
+            {% endif %}
+            {% endif %}
         </div>
 
     </body> 

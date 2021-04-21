@@ -1,0 +1,45 @@
+<html>
+    <title>Geometric Mean Calculator</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+
+    <body>
+
+        <div class="sidenav">
+            <a href="/" style="margin-left: 0px; font-size: xx-large; margin-bottom: 15px; color: white;">Home</a>
+            <a href="/hpr">HPR</a>
+            <a href="/apr">APR</a>
+            <a href="/ear">EAR</a>
+            <a href="/PerPeriod">Per Period Rate</a>
+            <a href="/sharpe">Sharpe Ratio</a>
+            <a href="/geometricMean">Geometric Mean</a>
+            <a href="/harmonicMean">Harmonic Mean</a>
+        </div>
+
+        <div class="main">
+            <h1>CALCULATE GEOMETRIC MEAN</h1>
+            <h3>DESCRIPTION:</h3>
+            <pre> The geometric mean is the average of a set of products, the calculation of which is 
+ commonly used to determine the performance results of an investment or portfolio.
+            </pre>
+            </pre>
+            <h3>INPUT:</h3>
+            <pre style="margin-top: -25px;">
+                
+<form action="/geometricMean" method="POST">
+    <label>Please list out all of the data points as numbers seperated by commas</label>
+    <label>EX: num1, num2, num3, num4</label>
+    </br>
+    <input name="geo_data" id=geo_data style="width: 300px;" value="{{geo_data}}" /></br>
+    <button name="submit" type="submit">Submit</button>
+</form>
+            </pre>
+            {% if isPost == True %}
+            <h3 style="margin-top: -35px;">RESULTS:</h3>
+            <pre>
+    <label style="font-size: larger;">Geometric Mean Result: <b>{% if geo_mean_result != -1.00 %} {{geo_mean_result}}% {% else %} INVALID INPUT {% endif %}</b></label> 
+            </pre>
+            {% endif %}
+        </div>
+
+    </body> 
+</html>
