@@ -39,14 +39,23 @@ def HPR(Beginning_Price, End_Value, Dividend):
 
 def Period_Rate(Number_Of_Payments,Payment_Amount,Amount_Barrowed):
 #Per Period Rate Variables
-    N = Number_Of_Payments
-    PMT = Payment_Amount
-    PV = Amount_Barrowed
-    FV = 0
+    #N = Number_Of_Payments
+    #PMT = Payment_Amount
+    #PV = Amount_Barrowed
+    #FV = 0
 #math
-    Period_Rate_Percent = np.rate(N,-PMT,PV,FV)
-    return Period_Rate_Percent*100
+    #Period_Rate_Percent = np.rate(N,-PMT,PV,FV)
+    #return Period_Rate_Percent*100
 
+#########################################
+#new period rate
+#finds effective interest rate for each compoiunding period
+#to find EAR you need the per period rate, however you might only have APR and Num of periods
+def Period_Rate(A,P):
+    A = APR
+    P = num_periods
+    per_period_rate = (A/P)
+return per_period_rate*100
 #########################################
 
 def APR(Per_Period_Rate, Number_Periods):
