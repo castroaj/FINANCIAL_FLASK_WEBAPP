@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-import numpy as np
+import numpy_financial as np
 import statistics
 from pandas import DataFrame
 from scipy.stats.mstats import gmean

@@ -98,8 +98,10 @@ def ear():
 def perPeriod():
     number_of_payments, payment_amount, amount_borrowed = 0, 0, 0
     perPeriodRate = -1
+    isPost = False
 
     if request.method == 'POST':
+        isPost = True
         form = request.form
         number_of_payments = form['number_of_payments']
         payment_amount = form['payment_amount']
@@ -111,7 +113,7 @@ def perPeriod():
 
     perPeriodRate = "{:.2f}".format(perPeriodRate)
 
-    return render_template('PPR.html', number_of_payments=number_of_payments, payment_amount=payment_amount, amount_borrowed=amount_borrowed, perPeriodRate=perPeriodRate)
+    return render_template('PPR.html', number_of_payments=number_of_payments, payment_amount=payment_amount, amount_borrowed=amount_borrowed, perPeriodRate=perPeriodRate, isPost=isPost)
 
 @app.route('/sharpe', methods=['POST', 'GET'])
 def sharpe():

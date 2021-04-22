@@ -19,7 +19,7 @@
         </div>
 
         <div class="main">
-            <h1>CALCULATE PER PERIOD RETURN</h1>
+            <h1>CALCULATE PER PERIOD RATE OF RETURN</h1>
             <h3>DESCRIPTION:</h3>
             <pre> Per period return is the total return received from holding an asset or portfolio 
  of assets over a specified period of time.
@@ -39,7 +39,7 @@
             {% if isPost == True %}
             <h3 style="margin-top: -35px;">RESULTS:</h3>
             <pre>
-    <label style="font-size: larger;">Per Period Return: <b>{% if perPeriodRate != -1 %} {{perPeriodRate}} {% else %} INVALID {% endif %}</b></label> 
+    <label style="font-size: larger;">Per Period Rate of Return: <b>{% if perPeriodRate != -1 %} {{perPeriodRate}}% {% else %} INVALID {% endif %}</b></label> 
             </pre>
             {% endif %}
         </div>
