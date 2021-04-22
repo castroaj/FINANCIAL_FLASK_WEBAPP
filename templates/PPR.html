@@ -19,28 +19,34 @@
         </div>
 
         <div class="main">
-            <h1>CALCULATE PER PERIOD RATE OF RETURN</h1>
+            <h1>CALCULATE PER PERIOD RATE</h1>
             <h3>DESCRIPTION:</h3>
-            <pre> Per period return is the total return received from holding an asset or portfolio 
- of assets over a specified period of time.
+            <pre> The periodic rate is the interest rate charged over a certain number of time
+ periods. The periodic rate equals the annual interest rate divided by the number
+ of periods. 
             </pre>
             <h3>INPUT:</h3>
             <pre style="margin-top: -25px;">
 <form action="/PerPeriod" method="POST">
-    <label>How many payments?</label>
-    <input name="number_of_payments" id='number_of_payments' value="{{number_of_payments}}"><br/>
-    <label>What is the payment amount?</label>
-    <input name="payment_amount" id='payment_amount' value="{{payment_amount}}"><br/>
-    <label>What is the amount borrowed?</label>
-    <input name="amount_borrowed" id='amount_borrowed' value="{{amount_borrowed}}"><br/>
+    <label>How many payments/periods?</label>
+    <input name="number_of_periods" id='number_of_periods' value="{{number_of_periods}}"><br/>
+    <label>What is the APR (Annual Percentage Rate)?</label>
+    <input name="apr" id='apr' value="{{apr}}"><br/>
     <button name="submit" type="submit">Submit</button>
 </form>
             </pre>
             {% if isPost == True %}
+            {% if isCalculated == True%}
             <h3 style="margin-top: -35px;">RESULTS:</h3>
             <pre>
     <label style="font-size: larger;">Per Period Rate of Return: <b>{% if perPeriodRate != -1 %} {{perPeriodRate}}% {% else %} INVALID {% endif %}</b></label> 
             </pre>
+            {% else %}
+            <h3 style="margin-top: -35px;">RESULTS:</h3>
+            <pre>
+    <label style="font-size: larger;">Annual Percentage Rate: <b>INVALID INPUT</b></label> 
+            </pre> 
+            {% endif %}
             {% endif %}
         </div>
 

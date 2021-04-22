@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-import numpy.financial as np
+import numpy_financial as np
 import statistics
 from pandas import DataFrame
 from scipy.stats.mstats import gmean
@@ -37,7 +37,7 @@ def HPR(Beginning_Price, End_Value, Dividend):
 
 ##########################################
 
-def Period_Rate(Number_Of_Payments,Payment_Amount,Amount_Barrowed):
+#def Period_Rate(Number_Of_Payments,Payment_Amount,Amount_Barrowed):
 #Per Period Rate Variables
     #N = Number_Of_Payments
     #PMT = Payment_Amount
@@ -48,14 +48,14 @@ def Period_Rate(Number_Of_Payments,Payment_Amount,Amount_Barrowed):
     #return Period_Rate_Percent*100
 
 #########################################
+
+
 #new period rate
 #finds effective interest rate for each compoiunding period
 #to find EAR you need the per period rate, however you might only have APR and Num of periods
 def Period_Rate(A,P):
-    A = APR
-    P = num_periods
     per_period_rate = (A/P)
-return per_period_rate*100
+    return per_period_rate
 #########################################
 
 def APR(Per_Period_Rate, Number_Periods):

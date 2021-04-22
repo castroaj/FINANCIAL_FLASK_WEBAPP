@@ -26,18 +26,18 @@
             <pre style="margin-top: -25px;">
                 
 <form action="/ear" method="POST">
-     <label>Period Rate?</label>
+     <label>What is your per period rate? (%)</label>
 <input class="form_input" name="per_period_rate" id='per_period_rate' value="{{per_period_rate}}"><br/>
-     <label>Number Of Periods?</label>
+     <label>How many payments/periods?</label>
 <input class="form_input" name="number_of_periods" id='number_of_periods' value="{{number_of_periods}}"/><br/>
-    <button name="submit" type="submit">Submit</button>
+     <button name="submit" type="submit">Submit</button>
 </form>
             </pre>
             {% if isPost == True %}
             {% if isCalculated == True %}
             <h3 style="margin-top: -35px;">RESULTS:</h3>
             <pre>
-    <label style="font-size: larger;">Effective Annual Rate: <b>{% if ear != -1.00 %} {{ear}} {% else %} INVALID INPUT {% endif %}</b></label> 
+    <label style="font-size: larger;">Effective Annual Rate: <b>{% if ear != -1.00 %} {{ear}}% {% else %} INVALID INPUT {% endif %}</b></label> 
             </pre>
             {% else %}
             <h3 style="margin-top: -35px;">RESULTS:</h3>
